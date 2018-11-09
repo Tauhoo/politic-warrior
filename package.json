@@ -12,6 +12,8 @@
   "dependencies": {
     "next": "^7.0.2",
     "react": "^16.6.1",
-    "react-dom": "^16.6.1"
+    "react-dom": "^16.6.1",
+    "styled-components": "^4.0.3",
+    "wtf_wikipedia": "^6.2.1"
   }
 }
