@@ -4,11 +4,12 @@ import Paragraph from '../components/Paragraph'
 export default class extends Component {
   state = { name: '' }
   upDateState = newState => {
+    console.log('ice')
     this.setState(newState)
   }
   render = () => (
     <div>
-      <Navbar upDateState={this.upDateState} />
+      <Navbar UpDateState={this.upDateState} />
       <Paragraph />
       <button>ice</button>
     </div>

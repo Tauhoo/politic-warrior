@@ -64,9 +64,8 @@ export default class extends Component {
   onsubmit = e => {
     e.preventDefault()
     let { input, keyword } = this.state
-
     if (input === []) return
-    if (input[0] === this.keyword) {
+    if (input[0] === keyword) {
       this.props.UpDateState({ name: keyword })
       return
     }
