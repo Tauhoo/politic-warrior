@@ -40,27 +40,41 @@ const SubContainer = styled.div`
   box-sizing: border-box;
   border-radius: 0px 0px 5px 5px;
 `
-
-const renderData = () => {}
-export default class extends Component {
-  state = { data: [] }
-  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
-  componentWillReceiveProps(nextProps) {
-    this.setState({ data: nextProps.data })
-  }
-  render() {
-    return (
+const renderData = ([topic, ...data]) => {
+  if (topic.title === 'อ้างอิง') return <></>
+  let allDetail = data.map(detail => detail.detail.join('')).join('')
+  if (allDetail === '' && topic.detail.join('') === '') return <></>
+  let result =
+    data.length === 0 &&
+    (topic.detail.length === 0 || topic.detail[0] === '') ? (
+      <></>
+    ) : (
       <Container>
         <TopicContainer>
-          <Topic>Hisory</Topic>
+          <Topic>{topic.title === '' ? 'ประวัติทั่วไป' : topic.title}</Topic>
         </TopicContainer>
         <SubContainer>
-          <ParagraphTopic>ประวัติ</ParagraphTopic>
-          <Paragraph>
-            pมมแหงกวแหงกแใหกงวแใฟหดอืฟสดาอืฟสกดาหือาฟ่หดือา่ฟดืกาอ่ืฟดา่อืฟาก่ดือา่ฟดือา่ฟกดืาอืฟกดา่อืาฟ่ดือา่ฟหดทืแฟหา่กืแสาหกแ
-          </Paragraph>
+          {data.length === 0 ? (
+            <Paragraph>{topic.detail}</Paragraph>
+          ) : (
+            data.map(detail =>
+              detail.detail.join('') === '' ? (
+                <></>
+              ) : (
+                <>
+                  <ParagraphTopic>{detail.title}</ParagraphTopic>
+                  <Paragraph>{detail.detail}</Paragraph>
+                </>
+              ),
+            )
+          )}
         </SubContainer>
       </Container>
     )
+  return result
+}
+export default class extends Component {
+  render() {
+    return renderData(this.props.data)
   }
 }
