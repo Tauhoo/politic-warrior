@@ -11,7 +11,7 @@ const Container = styled.div`
 `
 const TopicContainer = styled.div`
   width: 90%;
-  background-color: black;
+  background-color: #2d3436;
   border-radius: 5px 5px 0px 0px;
   padding: 0.5em 1em;
   box-sizing: border-box;
@@ -22,25 +22,27 @@ const Topic = styled.span`
   color: white;
 `
 const Paragraph = styled.span`
-  font-family: 'K2D';
+  font-family: 'kanit';
   font-size: 1em;
   display: block;
+  color: #2d3436;
 `
 const ParagraphTopic = styled.span`
   width: 100%;
-  font-family: 'K2D';
+  font-family: 'Kanit';
   font-size: 1.5em;
   display: block;
+  margin: 1em 0em;
 `
 const SubContainer = styled.div`
   width: 90%;
-  background-color: gray;
+  background-color: white;
   padding: 0.5em 1em 1em 1em;
   box-sizing: border-box;
   border-radius: 0px 0px 5px 5px;
 `
 const renderData = ([topic, ...data]) => {
-  if (topic.title === 'อ้างอิง') return <></>
+  if (topic.title === 'อ้างอิง' || topic.title === 'ดูเพิ่ม') return <></>
   let allDetail = data.map(detail => detail.detail.join('')).join('')
   if (allDetail === '' && topic.detail.join('') === '') return <></>
   let result =

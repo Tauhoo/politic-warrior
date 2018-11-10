@@ -9,6 +9,7 @@ const Container = styled.form`
   padding: 2px;
   position: relative;
   float: right;
+  align-items: center;
   @media (max-width: 650px) {
     width: 100%;
   }

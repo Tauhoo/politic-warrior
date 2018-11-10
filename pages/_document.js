@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
         <Head>
           <title>Politic Warrior</title>
           {styleTags}
-          <style>{`body, html { margin: 0; font-size: 16px;}
+          <style>{`body, html { margin: 0; font-size: 16px; background-color: #dfe6e9;}
           `}</style>
           <meta name="viewport" content="width=device-width" />
           <link
