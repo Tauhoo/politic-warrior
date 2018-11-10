@@ -5,11 +5,11 @@ import getData from '../libs/getData'
 
 const renderData = data => data.map(paragraph => <Paragraph data={paragraph} />)
 export default class extends Component {
-  state = { name: '', data: [] }
+  state = { name: '', data: [], subDetail: {}, imageUrl: '' }
   upDateState = async name => {
     let data = await getData(name)
     console.log(data)
-    this.setState({ name, data })
+    this.setState({ name, ...data })
   }
   render = () => (
     <div>

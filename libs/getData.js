@@ -1,4 +1,14 @@
 import wtf from 'wtf_wikipedia'
+
+const getImage = name =>
+  new Promise(async (resolve, reject) => {
+    let url = `https://th.wikipedia.org/w/api.php?action=query&origin=*&titles=Image:${name}&prop=imageinfo&iiprop=url&format=json`
+    console.log('  ooo ' + url)
+    let respon = await fetch(url).then(res => res.json())
+    let pages = respon.query.pages
+    let result = pages[Object.keys(pages)[0]].imageinfo[0].url
+    resolve(result)
+  })
 export default title =>
   new Promise(async (resolve, reject) => {
     let respon = await fetch(
@@ -8,6 +18,9 @@ export default title =>
     let o = pages[Object.keys(pages)[0]]
     let text = o.revisions[0]['*']
     let sections = wtf(text).data.sections
+    let subDetail = sections[0].data.templates
+    let imageName = subDetail[subDetail.length - 1].data.image
+    let imageUrl = await getImage(imageName).then(result => result)
     let result = []
     let stack = []
     for (let section of sections) {
@@ -23,7 +36,7 @@ export default title =>
         stack.push(data)
       }
     }
-    resolve(result)
+    resolve({ result, subDetail, imageUrl })
   })
 
 function modifyData(topic) {
