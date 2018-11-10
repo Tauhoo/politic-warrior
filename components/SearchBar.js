@@ -58,7 +58,6 @@ export default class extends Component {
   state = { input: [], keyword: '', isSuggest: false, isHover: false }
   update = (input, keyword) => {
     if (input === []) return
-    console.log(input, keyword)
     if (input.includes(keyword)) {
       this.props.UpDateState(keyword)
       this.setState({ isSuggest: false, isHover: false })
@@ -97,6 +96,7 @@ export default class extends Component {
           onChange={this.onchange}
           onFocus={this.setSuggest(true)}
           onBlur={this.setSuggest(false)}
+          placeholder="กรอกชื่อนักการเมืองที่ท่านต้องการ"
         />
         <Icon src="/static/search.svg" />
         <PreviewContainer

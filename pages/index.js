@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import TopProfile from '../components/TopProfile'
 import Paragraph from '../components/Paragraph'
 import getData from '../libs/getData'
+import getCard from '../libs/getCard'
 import Home from '../components/home'
 import styled from 'styled-components'
 const Name = styled.h1`
@@ -32,12 +33,14 @@ export default class extends Component {
         let { result, subDetail, imageUrl } = await getData(name).then(
           res => res,
         )
+        let Card = await getCard(name, result, imageUrl)
         this.setState({
           data: result,
           subDetail: subDetail,
-          imageUrl: imageUrl,
+          imageUrl: Card,
           name,
         })
+        console.log(Card)
         this.setState({ isShow: false })
       }.bind(this),
       600,

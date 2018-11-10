@@ -3,7 +3,6 @@ import wtf from 'wtf_wikipedia'
 const getImage = name =>
   new Promise(async (resolve, reject) => {
     let url = `https://th.wikipedia.org/w/api.php?action=query&origin=*&titles=Image:${name}&prop=imageinfo&iiprop=url&format=json`
-    console.log('  ooo ' + url)
     let respon = await fetch(url).then(res => res.json())
     let pages = respon.query.pages
     let result = pages[Object.keys(pages)[0]].imageinfo[0].url

@@ -22,6 +22,20 @@ const Detail = styled.span`
   font-family: 'Kanit';
   color: #2d3436;
 `
+const Image = styled.img`
+  width: 30%;
+  position: absolute;
+  transform: translate(
+      ${props => (props.position === 'left' ? '-0%' : '-100%')},
+      -100%
+    )
+    scaleX(${props => (props.position === 'left' ? '1' : '-1')});
+  top: 100vh;
+  left: ${props => (props.position === 'left' ? '0' : '100%')};
+  @media (max-width: 650px) {
+    width: 50%;
+  }
+`
 export default class extends Component {
   state = { isShow: true }
 
@@ -33,6 +47,8 @@ export default class extends Component {
       <Container isDisplay={this.state.isShow}>
         <Name>Politic Warrior</Name>
         <Detail>{`เราได้รวบรวมนักการเมืองในไทยมากมายไว้แล้ว มาดูประวัติและข้อมูลคนที่ท่านสนใจกัน`}</Detail>
+        <Image src="/static/politicman.svg" position="left" />
+        <Image src="/static/politicman.svg" position="right" />
       </Container>
     )
   }
