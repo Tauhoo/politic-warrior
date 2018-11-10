@@ -20,7 +20,6 @@ const Topic = styled.span`
   font-size: 2em;
   font-family: 'Kanit';
   color: white;
-  font-family: 'Roboto';
 `
 const Paragraph = styled.span`
   font-family: 'K2D';
@@ -29,7 +28,7 @@ const Paragraph = styled.span`
 `
 const ParagraphTopic = styled.span`
   width: 100%;
-  font-family: 'Kanit';
+  font-family: 'K2D';
   font-size: 1.5em;
   display: block;
 `

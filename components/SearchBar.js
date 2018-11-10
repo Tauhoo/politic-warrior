@@ -39,43 +39,76 @@ const PreviewContainer = styled.div`
   box-sizing: border-box;
   display: ${props => (props.isDisplay ? 'block' : 'none')};
 `
-const PreviewName = styled.span`
+const PreviewName = styled.button`
+  width: 100%;
   padding: 2px;
   display: block;
   font-size: 1em;
   font-family: 'K2D';
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: none;
+  background-color: gray;
+  &:hover {
+    background-color: white;
+  }
 `
-const Preview = list => (
-  <PreviewContainer isDisplay={list.length}>
-    {list.map((name, i) => (
-      <PreviewName key={i}>{name}</PreviewName>
-    ))}
-  </PreviewContainer>
-)
 export default class extends Component {
-  state = { input: [], keyword: '' }
+  state = { input: [], keyword: '', isSuggest: false, isHover: false }
+  update = (input, keyword) => {
+    if (input === []) return
+    console.log(input, keyword)
+    if (input.includes(keyword)) {
+      this.props.UpDateState(keyword)
+      this.setState({ isSuggest: false, isHover: false })
+      return
+    }
+  }
   onchange = e => {
     let input = e.target.value
     this.setState({
       input: input === '' ? [] : searcher(input),
       keyword: input,
+      isSuggest: true,
     })
   }
   onsubmit = e => {
     e.preventDefault()
     let { input, keyword } = this.state
-    if (input === []) return
-    if (input[0] === keyword) {
-      this.props.UpDateState(keyword)
-      return
-    }
+    this.update(input, keyword)
+  }
+  onclick = index => () => {
+    this.update(this.state.input, this.state.input[index])
+  }
+  onmouseenter = () => {
+    this.setState({ isHover: true })
+  }
+  onmouseout = () => {
+    this.setState({ isHover: false })
+  }
+  setSuggest = isSuggest => () => {
+    this.setState({ isSuggest: isSuggest || this.state.isHover })
   }
   render() {
     return (
       <Container onSubmit={this.onsubmit}>
-        <Bar onChange={this.onchange} />
+        <Bar
+          onChange={this.onchange}
+          onFocus={this.setSuggest(true)}
+          onBlur={this.setSuggest(false)}
+        />
         <Icon src="/static/search.svg" />
-        {Preview(this.state.input)}
+        <PreviewContainer
+          isDisplay={this.state.input.length && this.state.isSuggest}
+          onMouseEnter={this.onmouseenter}
+          onMouseLeave={this.onmouseout}
+        >
+          {this.state.input.map((name, i) => (
+            <PreviewName key={i} onClick={this.onclick(i)}>
+              {name}
+            </PreviewName>
+          ))}
+        </PreviewContainer>
       </Container>
     )
   }

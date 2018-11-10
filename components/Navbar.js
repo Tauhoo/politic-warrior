@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import SearchBar from './SearchBar'
 const Container = styled.div`
+  top: 0px;
+  left: 0px;
   background-color: black;
   width: 100vw;
   padding: 5px;
