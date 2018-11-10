@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import searcher from '../libs/searcher'
 import styled from 'styled-components'
-const Container = styled.div`
+const Container = styled.form`
   background-color: white;
   display: flex;
   flex: 1;
@@ -53,14 +53,27 @@ const Preview = list => (
   </PreviewContainer>
 )
 export default class extends Component {
-  state = { input: [] }
+  state = { input: [], keyword: '' }
   onchange = e => {
     let input = e.target.value
-    this.setState({ input: input === '' ? [] : searcher(input) })
+    this.setState({
+      input: input === '' ? [] : searcher(input),
+      keyword: input,
+    })
+  }
+  onsubmit = e => {
+    e.preventDefault()
+    let { input, keyword } = this.state
+
+    if (input === []) return
+    if (input[0] === this.keyword) {
+      this.props.UpDateState({ name: keyword })
+      return
+    }
   }
   render() {
     return (
-      <Container>
+      <Container onSubmit={this.onsubmit}>
         <Bar onChange={this.onchange} />
         <Icon src="/static/search.svg" />
         {Preview(this.state.input)}

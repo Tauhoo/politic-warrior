@@ -31,11 +31,11 @@ const Logo = styled.span`
   }
   color: white;
 `
-export default () => (
+export default props => (
   <Container>
     <LogoContainer>
       <Logo>Politic Warrior</Logo>
     </LogoContainer>
-    <SearchBar />
+    <SearchBar UpDateState={props.UpDateState} />
   </Container>
 )
