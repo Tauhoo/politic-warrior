@@ -6,25 +6,35 @@ const Container = styled.div`
   width: 100vw;
   padding: 5px;
   display: flex;
+  box-sizing: border-box;
+  @media (max-width: 650px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
 `
 const LogoContainer = styled.div`
-  height: 10px;
-  width: 10px;
   display: flex;
   align-items: center;
+  flex: 1;
   @media (max-width: 650px) {
-    height: 20px;
-    width: 20px;
+    justify-content: center;
+    padding: 5px;
   }
 `
 const Logo = styled.span`
-  font-size: 2em;
+  font-size: 1em;
+  font-family: 'Roboto';
+  @media (max-width: 650px) {
+    font-size: 2em;
+  }
   color: white;
 `
 export default () => (
   <Container>
     <LogoContainer>
-      <Logo>ice</Logo>
+      <Logo>Politic Warrior</Logo>
     </LogoContainer>
     <SearchBar />
   </Container>

@@ -4,12 +4,13 @@ import styled from 'styled-components'
 const Container = styled.div`
   background-color: white;
   display: flex;
-  width: 30vw;
+  flex: 1;
   border-radius: 5px;
   padding: 2px;
   position: relative;
+  float: right;
   @media (max-width: 650px) {
-    width: 50%;
+    width: 100%;
   }
 `
 const Bar = styled.input`
@@ -18,11 +19,12 @@ const Bar = styled.input`
   border: 0px;
   outline: none;
   padding: 1px 1px 1px 5px;
+  font-family: 'K2D';
 `
 const Icon = styled.img`
   height: 20px;
   @media (max-width: 650px) {
-    height: 40px;
+    height: 30px;
   }
 `
 const PreviewContainer = styled.div`
@@ -41,6 +43,7 @@ const PreviewName = styled.span`
   padding: 2px;
   display: block;
   font-size: 1em;
+  font-family: 'K2D';
 `
 const Preview = list => (
   <PreviewContainer isDisplay={list.length}>

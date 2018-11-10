@@ -15,6 +15,18 @@ export default class MyDocument extends Document {
           <style>{`body, html { margin: 0; font-size: 16px;}
           `}</style>
           <meta name="viewport" content="width=device-width" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Roboto"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Sofia"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=K2D"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <div className="root">{main}</div>
