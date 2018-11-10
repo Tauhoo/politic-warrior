@@ -40,8 +40,14 @@ const SubContainer = styled.div`
   box-sizing: border-box;
   border-radius: 0px 0px 5px 5px;
 `
+
+const renderData = () => {}
 export default class extends Component {
-  state = {}
+  state = { data: [] }
+  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
+  componentWillReceiveProps(nextProps) {
+    this.setState({ data: nextProps.data })
+  }
   render() {
     return (
       <Container>

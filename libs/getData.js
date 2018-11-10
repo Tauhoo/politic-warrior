@@ -5,7 +5,7 @@ export default title =>
       `https://th.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&origin=*&titles=${title}&format=json`,
     ).then(res => res.json())
     let pages = respon.query.pages
-    let o = pages[Object.keys(b)[0]]
+    let o = pages[Object.keys(pages)[0]]
     let text = o.revisions[0]['*']
     let sections = wtf(text).data.sections
     let result = []
@@ -23,7 +23,7 @@ export default title =>
         stack.push(data)
       }
     }
-    resolve([result, result])
+    resolve(result)
   })
 
 function modifyData(topic) {

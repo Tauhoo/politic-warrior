@@ -47,8 +47,8 @@ const PreviewName = styled.span`
 `
 const Preview = list => (
   <PreviewContainer isDisplay={list.length}>
-    {list.map(name => (
-      <PreviewName>{name}</PreviewName>
+    {list.map((name, i) => (
+      <PreviewName key={i}>{name}</PreviewName>
     ))}
   </PreviewContainer>
 )
@@ -66,7 +66,7 @@ export default class extends Component {
     let { input, keyword } = this.state
     if (input === []) return
     if (input[0] === keyword) {
-      this.props.UpDateState({ name: keyword })
+      this.props.UpDateState(keyword)
       return
     }
   }
