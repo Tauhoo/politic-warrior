@@ -34,7 +34,7 @@ const PreviewContainer = styled.div`
   position: absolute;
   top: 100%;
   left: 0px;
-  background-color: gray;
+  background-color: #dfe6e9;
   border-radius: 5px;
   padding: 5px;
   box-sizing: border-box;
@@ -49,7 +49,7 @@ const PreviewName = styled.button`
   box-sizing: border-box;
   border-radius: 5px;
   border: none;
-  background-color: gray;
+  background-color: #dfe6e9;
   &:hover {
     background-color: white;
   }

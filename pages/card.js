@@ -2,38 +2,77 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 const Name = styled.span`
   position: absolute;
-  top: 60px;
-  left: 90px;
-  font-size: 6em;
+  top: 3vw;
+  transform: translateX(-50%);
+  left: 50vw;
+  font-size: 3vw;
+  @media (max-width: 650px) {
+    top: 7vw;
+    font-size: 5vw;
+  }
 `
 const Effect = styled.span`
   position: absolute;
-  width: 820px;
-  background-color: white;
-  font-size: 2.5em;
-  top: 1129px;
+  width: 40vw;
+  font-size: ${props => props.size * 1.5}vw;
+  top: 57vw;
+  left: 30vw;
+  @media (max-width: 650px) {
+    font-size: ${props => props.size * 3}vw;
+    width: 80vw;
+    left: 10vw;
+    top: 114vw;
+  }
+`
+const Image = styled.img`
+  position: absolute;
+  width: 50vw;
   transform: translateX(-50%);
-  left: 500px;
+  left: 50vw;
+  @media (max-width: 650px) {
+    width: 100vw;
+    top: ;
+  }
+`
+
+const Button = styled.button`
+  border: 0px;
+  border-radius: 5px;
+  padding: 0.25em 0.5em;
+  background-color: #2d3436;
+  position: absolute;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  top: 75vw;
+  color: white;
+  margin-bottom: 1vw;
+  @media (max-width: 650px) {
+    top: 150vw;
+  }
 `
 export default class extends Component {
-  state = { picture: '', effect: '', name: '' }
+  state = { picture: '', effect: '', name: '', stringSize: '' }
   componentDidMount() {
     let Params = new URLSearchParams(window.location.search)
     this.setState({
       picture: Params.get('picture'),
       effect: Params.get('effect'),
       name: Params.get('name'),
+      stringSize: Params.get('effect').length > 160 ? 0.6 : 1,
     })
+    console.log(Params.get('picture'), Params.get('effect'), Params.get('name'))
+    console.log(Params.get('effect').length)
+  }
+  print = () => {
+    window.print()
   }
   render() {
     return (
       <>
-        <img
-          src={`https://www.yugiohcardmaker.net/ycmaker/createcard.php?name=x&cardtype=Monster&subtype=normal&attribute=Light&level=1&rarity=Common&picture=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F7%2F7c%2FNakorn_Machim_official_2018.jpg&circulation=&set1=&set2=&type=&carddescription=x&atk=&def=&creator=&year=2018&serial=`}
-          width="1000px"
-        />
+        <Image src={this.state.picture} />
         <Name>{this.state.name}</Name>
-        <Effect>{this.state.effect}</Effect>
+        <Effect size={this.state.stringSize}>{this.state.effect}</Effect>
+        <Button onClick={this.print}>Print</Button>
       </>
     )
   }

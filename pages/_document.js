@@ -12,9 +12,9 @@ export default class MyDocument extends Document {
         <Head>
           <title>Politic Warrior</title>
           {styleTags}
-          <style>{`body, html { margin: 0; font-size: 16px; background-color: #dfe6e9;}
+          <style>{`body, html { margin: 0; font-size: 16px; background-color: white; overflow-x: hidden;}
           `}</style>
-          <link rel="shortcut icon" href="/static/logo.svg" />
+          <link rel="icon" href="/static/logo.svg" />
           <meta name="viewport" content="width=device-width" />
           <link
             href="https://fonts.googleapis.com/css?family=Roboto"

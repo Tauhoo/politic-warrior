@@ -36,7 +36,7 @@ const ParagraphTopic = styled.span`
 `
 const SubContainer = styled.div`
   width: 90%;
-  background-color: white;
+  background-color: #dfe6e9;
   padding: 0.5em 1em 1em 1em;
   box-sizing: border-box;
   border-radius: 0px 0px 5px 5px;
@@ -48,7 +48,7 @@ const renderData = ([topic, ...data]) => {
   let result =
     data.length === 0 &&
     (topic.detail.length === 0 || topic.detail[0] === '') ? (
-      <></>
+      <div key={i} />
     ) : (
       <Container>
         <TopicContainer>
@@ -58,14 +58,14 @@ const renderData = ([topic, ...data]) => {
           {data.length === 0 ? (
             <Paragraph>{topic.detail}</Paragraph>
           ) : (
-            data.map(detail =>
+            data.map((detail, i) =>
               detail.detail.join('') === '' ? (
                 <></>
               ) : (
-                <>
+                <div key={i}>
                   <ParagraphTopic>{detail.title}</ParagraphTopic>
                   <Paragraph>{detail.detail}</Paragraph>
-                </>
+                </div>
               ),
             )
           )}
